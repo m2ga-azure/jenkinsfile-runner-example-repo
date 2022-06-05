@@ -42,3 +42,4 @@ jobs:
           jenkinsfile: Jenkinsfile
           plugins: plugins.txt
           scmfile: scmfile.yaml
+          BRANCH: "hotfix/bug"
