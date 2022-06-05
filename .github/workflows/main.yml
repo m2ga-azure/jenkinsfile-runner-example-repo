@@ -6,7 +6,7 @@ name: jenkinsfile-runner with github action context
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
+    branches: [ master, feature/test ]
   pull_request:
     branches: [ master ]
 
@@ -25,15 +25,15 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       
-      - name: Replace scmfile.yaml With Custom Value
-        uses: microsoft/variable-substitution@v1
-        with:
-          files: scmfile.yaml
-        env:
-          credential.usernamePassword.password: ${{ secrets.GITHUB_TOKEN }}
-          credential.usernamePassword.username: ${{ github.actor }}
-          scm.git.userRemoteConfig.url: ${{ github.repositoryUrl }}
-          scm.git.branches.name: ${{ github.ref_name }}
+      # - name: Replace scmfile.yaml With Custom Value
+      #   uses: microsoft/variable-substitution@v1
+      #   with:
+      #     files: scmfile.yaml
+      #   env:
+      #     credential.usernamePassword.password: ${{ secrets.GITHUB_TOKEN }}
+      #     credential.usernamePassword.username: ${{ github.actor }}
+      #     scm.git.userRemoteConfig.url: ${{ github.repositoryUrl }}
+      #     scm.git.branches.name: ${{ github.ref_name }}
           
       # Runs a set of commands using the runners shell
       - name: custom runnger github action
