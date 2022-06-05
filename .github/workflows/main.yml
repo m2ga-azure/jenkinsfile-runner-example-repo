@@ -35,32 +35,32 @@ jobs:
       #     scm.git.userRemoteConfig.url: ${{ github.repositoryUrl }}
       #     scm.git.branches.name: ${{ github.ref_name }}
       
-      - name: Create scmfile.yaml
-        run: |
-          touch scmfile.yaml
+#       - name: Create scmfile.yaml
+#         run: |
+#           touch scmfile.yaml
 
-          password=$(yq '.credential.usernamePassword.password // "" ' scmfile.yaml) 
-          username=$(yq '.credential.usernamePassword.username // "" ' scmfile.yaml) 
-          url=$(yq '.scm.git.userRemoteConfigs.url // "" ' scmfile.yaml) 
-          branchName=$(yq '.scm.git.branches // "" ' scmfile.yaml)
+#           password=$(yq '.credential.usernamePassword.password // "" ' scmfile.yaml) 
+#           username=$(yq '.credential.usernamePassword.username // "" ' scmfile.yaml) 
+#           url=$(yq '.scm.git.userRemoteConfigs.url // "" ' scmfile.yaml) 
+#           branchName=$(yq '.scm.git.branches // "" ' scmfile.yaml)
 
-          if [ -z $password ]
-          then
-            yq -i '.credential.usernamePassword.password = "${{ secrets.GITHUB_TOKEN }}"' scmfile.yaml
-          fi
-          if [ -z $username ]
-          then 
-            yq -i '.credential.usernamePassword.username = "${{ github.actor }}"' scmfile.yaml
-          fi
-          if [ -z $url ]
-          then 
-            yq -i '.scm.git.userRemoteConfigs.url = "${{ github.repositoryUrl }}"' scmfile.yaml
-          fi
-          if [ -z $branchName ]
-          then 
-            yq -i '.scm.git.branches = "${{ github.ref_name }}"' scmfile.yaml
-          fi
-          cat scmfile.yaml
+#           if [ -z $password ]
+#           then
+#             yq -i '.credential.usernamePassword.password = "${{ secrets.GITHUB_TOKEN }}"' scmfile.yaml
+#           fi
+#           if [ -z $username ]
+#           then 
+#             yq -i '.credential.usernamePassword.username = "${{ github.actor }}"' scmfile.yaml
+#           fi
+#           if [ -z $url ]
+#           then 
+#             yq -i '.scm.git.userRemoteConfigs.url = "${{ github.repositoryUrl }}"' scmfile.yaml
+#           fi
+#           if [ -z $branchName ]
+#           then 
+#             yq -i '.scm.git.branches = "${{ github.ref_name }}"' scmfile.yaml
+#           fi
+#           cat scmfile.yaml
 
       # Runs a set of commands using the runners shell
       - name: custom runnger github action
