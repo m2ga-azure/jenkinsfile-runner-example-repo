@@ -12,7 +12,6 @@ pipeline {
         stage('init') {
             steps {
                 echo 'clear'
-//                 sh 'env'
                 sh "ls -al"
                 echo 'git branch'
             }
@@ -20,14 +19,7 @@ pipeline {
 
         stage('clone') {
             steps {
-                /*
-                script {
-                    git url: "$SOURCE_CODE_URL",
-                        branch: "$RELEASE_BRANCH",
-                        credentialsId: "$SOURCECODE_JENKINS_CREDENTIAL_ID"
-                }
-                */
-                git url: 'https://github.com/inspirit941/todo-with-cicd.git', branch: 'master', credentialsId: 'credentials'                
+                git url: SOURCE_CODE_URL, branch: RELEASE_BRANCH, credentialsId: SOURCECODE_JENKINS_CREDENTIAL_ID         
                 sh "ls -al"
 
             }
@@ -52,17 +44,5 @@ pipeline {
                 }
             }
         }
-
-/*
-        stage('deploy') {
-            steps {
-                sh '''
-                  docker run -d -p 5000:5000 todo/frontend
-
-                  docker run -d -p 8080:8080 todo/backend
-                '''
-            }
-        }
-*/
     }
 }
