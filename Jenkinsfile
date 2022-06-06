@@ -5,7 +5,7 @@ pipeline {
     }
     environment {
         SOURCECODE_JENKINS_CREDENTIAL_ID = 'credentials'
-        SOURCE_CODE_URL = 'https://github.com/inspirit941/todo-with-cicd.git'
+        SOURCE_CODE_URL = 'https://github.com/m2ga-azure/jenkinsfile-runner-example-repo.git'
         RELEASE_BRANCH = 'master'
     }
     stages {
